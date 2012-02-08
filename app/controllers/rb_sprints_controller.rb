@@ -11,9 +11,7 @@ class RbSprintsController < RbApplicationController
     result  = @sprint.update_attributes attribs
     status  = (result ? 200 : 400)
 
-    respond_to do |format|
-      format.html { render :partial => "sprint", :status => status, :object => @sprint }
-    end
+    render :partial => "sprint", :status => status, :object => @sprint 
   end
 
 end
