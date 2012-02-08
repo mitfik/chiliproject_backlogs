@@ -99,6 +99,14 @@ RB.Model = (function ($) {
       editor.find(".editor").first().focus();
     },
 
+		validateDateField: function(start_date, effective_date) {
+			start_date_val = new Date(start_date.val());
+			effective_date_val = new Date(effective_date.val());
+			if(start_date_val > effective_date_val) {
+				effective_date.val(start_date.val());
+			}
+		},
+
     edit: function () {
       var editor = this.getEditor(),
           self = this,
@@ -164,14 +172,24 @@ RB.Model = (function ($) {
 
         // Add a date picker if field is a date field
         if (field.hasClass("date")) {
+			var minimumDate = null;
+			if(field.hasClass("effective_date")) {
+			  minimumDate = new Date($("div.start_date").text());
+			}
           input.datepicker({
             changeMonth: true,
             changeYear: true,
             closeText: 'Close',
             dateFormat: 'yy-mm-dd',
             firstDay: 1,
-            showOn: 'button',
+	    	minDate: minimumDate,
             onClose: function () {
+			if($(this).hasClass("start_date")) {
+			  effective_date = $(this).parent().children('input[name=effective_date]');
+			  self.validateDateField($(this), effective_date );
+			  minimumDate = new Date(input.val());
+			  effective_date.datepicker("option", 'minDate', minimumDate);
+			}
               $(this).focus();
             },
             selectOtherMonths: true,
