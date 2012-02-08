@@ -17,9 +17,7 @@ class RbStoriesController < RbApplicationController
     story = Story.create_and_position(params)
     status = (story.id ? 200 : 400)
 
-    respond_to do |format|
-      format.html { render :partial => "story", :object => story, :status => status }
-    end
+     render :partial => "story", :object => story, :status => status
   end
 
   def update
@@ -28,9 +26,7 @@ class RbStoriesController < RbApplicationController
     story.reload
     status = (result ? 200 : 400)
 
-    respond_to do |format|
-      format.html { render :partial => "story", :object => story, :status => status }
-    end
+    render :partial => "story", :object => story, :status => status
   end
 
 end
