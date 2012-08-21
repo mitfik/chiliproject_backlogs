@@ -9,6 +9,7 @@ class RbTasksController < RbApplicationController
 
     respond_to do |format|
       format.html { render :partial => "task", :object => @task, :status => status }
+      format.js { render :partial => "task", :object => @task, :status => status }
     end
   end
 
@@ -20,6 +21,7 @@ class RbTasksController < RbApplicationController
 
     respond_to do |format|
       format.html { render :partial => "task", :object => @task, :status => status }
+      format.js { render :partial => "task", :object => @task, :status => status }
     end
   end
 
