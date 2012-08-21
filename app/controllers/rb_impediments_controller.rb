@@ -9,6 +9,7 @@ class RbImpedimentsController < RbApplicationController
 
     respond_to do |format|
       format.html { render :partial => "impediment", :object => @impediment, :status => status }
+      format.js { render :partial => "impediment", :object => @impediment, :status => status }
     end
   end
 
@@ -20,6 +21,7 @@ class RbImpedimentsController < RbApplicationController
 
     respond_to do |format|
       format.html { render :partial => "impediment", :object => @impediment, :status => status }
+      format.js { render :partial => "impediment", :object => @impediment, :status => status }
     end
   end
 
